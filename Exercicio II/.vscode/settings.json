@@ -1,0 +1,6 @@
+{
+    "c-cpp-compile-run.c-flags": "poltrCRUD.c poltrCRUD.h",
+    "files.associations": {
+        "cstdio": "c"
+    }
+}
