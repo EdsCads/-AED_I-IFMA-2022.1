@@ -8,9 +8,10 @@ void salvar(FILE* binArquivo,poltronas poltr[LMAX][CMAX]){
         printf("ARQUIVO SALVO\n\n");
     }
     else{
-        printf("ARQUIVO NÂO SALVO\n\n");
+        printf("ARQUIVO NÃO SALVO\n\n");
     }
 }
+
 
 void exibirPoltrona(poltronas poltr[LMAX][CMAX]){
     for(int i=0;i<LMAX;i++){
@@ -105,12 +106,21 @@ void editarPoltrona(poltronas poltr[LMAX][CMAX],int opEdit){
         printf("Coluna: ");
         scanf("%d",&col);
         if(_TESTETABELA_){
-            printf("poltrona inexistente\n\n"); 
+            printf("Poltrona Inexistente\n\n"); 
         }
     }while(_TESTETABELA_);
     if(opEdit!=1){
-        if(poltr[lin][col].estado!=1)
-            printf("Cadeira indisponivel para acao\n\n");
+        if(poltr[lin][col].estado==3){
+            printf("Cadeira Reservada para ");
+            puts(poltr[lin][col].nome);    
+        }
+        else if(poltr[lin][col].estado==2){
+            printf("Cadeira Comprada por ");
+            puts(poltr[lin][col].nome);
+        }
+        else if(poltr[lin][col].estado==4){
+            printf("Cadeira Bloqueada\n");
+        }
         else estadoPoltrona(poltr,lin,col,opEdit);
     }
     else{
@@ -144,7 +154,7 @@ void somarValorBilhete(poltronas poltr[LMAX][CMAX]){
         }
     }
 
-    printf("O valor arrecadado de todos os bilhetes é de RS %.2f\n",total);
+    printf("O valor arrecadado de todos os bilhetes eh de RS %.2f\n",total);
 }
 
 int menuPoltronaGeral(FILE *binPoltrona,poltronas poltr[LMAX][CMAX]){
@@ -164,11 +174,11 @@ int menuPoltronaGeral(FILE *binPoltrona,poltronas poltr[LMAX][CMAX]){
             case 1:
                 system("CLS||clean");
                 exibirPoltrona(poltr);
-                return;
+                return 1;
             case 2:
                 system("CLS||clean");
                 editarPoltrona(poltr,1);
-                return;
+                return 1;
             case 3:
                 system("CLS||clean");
                 editarPoltrona(poltr,2);
@@ -194,12 +204,8 @@ int menuPoltronaGeral(FILE *binPoltrona,poltronas poltr[LMAX][CMAX]){
                 return 0;
             default:
                 printf("Opcao inválida\n");
-                return;
+                return 1;
         }
-        if(op==0)
-            return 0;
-        else
-            return 1;
     }
 
 int main(){
@@ -208,7 +214,7 @@ int main(){
 
     do{
         menuPoltronaGeral(binPoltrona,poltr);
-    }while(menuPoltronaGeral(binPoltrona,poltr)!=0);
+    }while(menuPoltronaGeral(binPoltrona,poltr));
  
     
     return 0;
