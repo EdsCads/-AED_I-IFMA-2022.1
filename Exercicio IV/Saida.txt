@@ -1,3 +1,0 @@
-Numero de Homens: 2
-Numero de Mulheres: 1
-A idade da pessoa mais velha: 40

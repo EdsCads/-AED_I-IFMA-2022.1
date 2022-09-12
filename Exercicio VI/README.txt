@@ -1,0 +1,1 @@
+Escreva um programa que leia um arquivo e imprime no final desse mesmo arquivo, sem sobrescreve-lo, qual é o caractere que mais se repete. O nome do arquivo a ser lido deve ser dado pelo usuario.

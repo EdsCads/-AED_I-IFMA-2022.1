@@ -1,4 +1,0 @@
-3
-M Joao 40
-F Maria 32
-M Carlos 27
